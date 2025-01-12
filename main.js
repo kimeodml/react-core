@@ -1,5 +1,10 @@
 import App from './src/index';
+import { createDOM } from './src/utils/createDOM';
+
+function render(element, container) {
+  const dom = createDOM(element);
+  container.appendChild(dom);
+}
 
 const app = App();
-const root = document.getElementById('root');
-root.appendChild(app);
+render(app, document.getElementById('root'))
