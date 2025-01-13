@@ -1,4 +1,4 @@
-/** @jsx createElement */
+// /** @jsx createElement */
 
 import { createElement } from "./utils/createElement";
 
