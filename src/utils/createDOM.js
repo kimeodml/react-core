@@ -1,6 +1,11 @@
 export function createDOM(element) {
-  if (typeof element === 'string') {
+  if (typeof element === 'string' || typeof element === 'number') {
     return document.createTextNode(element); // 텍스트 노드를 반환
+  }
+
+  // 불리언 처리
+  if (typeof element === 'boolean') {
+    return document.createTextNode(element.toString());
   }
 
   const dom = document.createElement(element.type); // type에 맞는 DOM 요소를 생성
