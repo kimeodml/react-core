@@ -5,12 +5,10 @@ export default function App() {
   const [toDoList, setToDoList] = useState([]);
   const [toDo, setToDo] = useState('');
 
-  console.log(toDoList);
-
   const addToDoList = () => {
     if (toDo.trim() === '') return;
 
-    setToDoList([...toDoList, { text: toDo, checked: false }]);
+    setToDoList(prevList => [...prevList, { text: toDo, checked: false }]);
     setToDo('');
   };
 
@@ -31,7 +29,7 @@ export default function App() {
       return toDo;
     });
     setToDoList(newToDoList);
-  }
+  };
 
   return (
     <div className="container">
