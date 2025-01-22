@@ -11,8 +11,13 @@ export function createDOM(element) {
   const dom = document.createElement(element.type); // type에 맞는 DOM 요소를 생성
 
   // props를 순회하며 요소에 속성 설정 (className 등)
-  Object.keys(element.props).forEach(key => {
+  Object.entries(element.props).forEach(([key, value]) => {
     // 추후 data나 input의 value 같은 속성 고려 필요
+    if (typeof value === 'function') {
+      // 합성 이벤트 처리
+      const eventType = key.slice(2).toLocaleLowerCase();
+      dom.addEventListener(eventType, value); // ex) onClick -> click
+    }
     if (key !== 'children') {
       dom[key] = element.props[key];
     }

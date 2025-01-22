@@ -9,7 +9,7 @@ export function createElement(type, props, ...children) {
     type,
     props: {
       ...props,
-      children: children.flat(), // 배열인 경우 중첩 배열이 되기 때문에 평탄화 작업 필요
+      children: children.flat(), // 배열일 경우 중첩 배열이 되기 때문에 평탄화 작업 필요
     },
   };
 }
