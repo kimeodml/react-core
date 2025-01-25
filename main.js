@@ -1,13 +1,6 @@
 import App from '@/index';
-import { createDOM } from '@/utils/createDOM';
-
-function render(element, container) {
-  const dom = createDOM(element);
-  container.appendChild(dom);
-}
+import { render } from '@/utils/render';
 
 const app = App();
-render(app, document.getElementById('root'))
-
-console.log('element 추출', app);
-console.log(JSON.stringify(app, null, 2));
+const container = document.getElementById('root');
+render(app, container);
