@@ -1,8 +1,12 @@
 import createElement from "@/utils/createElement";
-import useState from "@/hooks/useState";
+import { useState, useEffect } from '@/hooks/myReact';
 
 export default function Counter() {
   const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    console.log('effect', counter);
+  }, [counter]);
 
   return (
     <div className="container">
