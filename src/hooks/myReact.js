@@ -47,8 +47,10 @@ export function useEffect(callback, deps) {
     // 이전 클린업 함수가 있다면 실행
     if (cleanup) cleanup();
 
-    // 새로운 콜백을 실행하고, 반환된 클린업 함수를 저장
-    const newCleanup = callback();
-    globalState[currentIndex] = [deps, newCleanup];
+    // Promise를 사용하여 콜백을 렌더링 후에 실행
+    Promise.resolve().then(() => {
+      const newCleanup = callback();
+      globalState[currentIndex] = [deps, newCleanup];
+    });
   }
 }
