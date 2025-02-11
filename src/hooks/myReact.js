@@ -25,8 +25,12 @@ export function useState(initialValue) {
       const container = getGlobalContainer(); // 전역 컨테이너 가져오기
 
       if (container) {
-        currentKey = 0;
-        render(App(), container); // 리렌더링 실행
+        // currentKey = 0;
+        // render(App(), container); // 리렌더링 실행
+        queueMicrotask(() => {
+          currentKey = 0;
+          render(App(), container);
+        });
       }
     }
   };
@@ -47,8 +51,8 @@ export function useEffect(callback, deps) {
     // 이전 클린업 함수가 있다면 실행
     if (cleanup) cleanup();
 
-    // Promise를 사용하여 콜백을 렌더링 후에 실행
-    Promise.resolve().then(() => {
+    // queueMicrotask 사용하여 콜백을 렌더링 후에 실행
+    queueMicrotask(() => {
       const newCleanup = callback();
       globalState[currentIndex] = [deps, newCleanup];
     });
