@@ -1,4 +1,4 @@
-export function createElement(type, props, ...children) {
+export default function createElement(type, props, ...children) {
   props = props || {};
 
   if (typeof type === 'function') {
